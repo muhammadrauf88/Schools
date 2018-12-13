@@ -2,7 +2,10 @@
 
 @section('content')
 
- <p class="control has-text-right" ">
+
+  <div class="notification is-black">         
+<h1 class="title is-size-5" style="margin-top:0px;">STUDENT DATA</h1> 
+ <p class="control has-text-right">
             <a class="button is-light" href="">
               <span class="icon">
                 <i class="fas fa-download" ></i>
@@ -10,9 +13,6 @@
               <span>Download</span>
             </a>
           </p>
-  <div class="notification is-black">         
-<h1 class="title is-size-4" style="margin-top:5px;">STUDENT DATA</h1> 
-
 </div>
 
 <div class="container">
@@ -20,12 +20,10 @@
     
       
      @if(\Session::has('success'))
-    <div class="notification is-success">
-        <p>{{\session::get('success')}}</p>
-    
- </div>
-
-@endif
+      <div class="notification is-dark">
+        <p>{!! \session::get('success') !!}</p>
+      </div>
+    @endif
 
 
 

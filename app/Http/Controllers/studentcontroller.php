@@ -96,10 +96,6 @@ class studentcontroller extends Controller
         $student->save();
         
         return redirect()->route('student.index')->with('success' ,'Data Updated');
-
-
-
-
     }
 
     /**
@@ -111,7 +107,11 @@ class studentcontroller extends Controller
     public function destroy($id)
     {
       $student = student::find($id);
+      $studentfullName = $student->fullName;
+
       $student->delete();
-      return redirect() ->route('student.index')->with('success','Data Deleted');  
+
+      return redirect()->route('student.index')
+            ->with('success', '<b>'.$studentfullName.'</b> was deleted successfully');
     }
 }

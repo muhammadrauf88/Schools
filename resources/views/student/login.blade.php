@@ -1,1 +1,4 @@
-login.blade.php
+@extends('master')
+
+@section('content')
+???

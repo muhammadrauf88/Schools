@@ -6,7 +6,8 @@
 
     <title>Schools</title>
 
-    <!-- Bootstrap -->
+
+    <!-- Bulma -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 
     <!-- FontAwesome (icons)  -->
@@ -18,7 +19,8 @@
       integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
       crossorigin="anonymous">
     </script>
-             <nav class="navbar is-light">
+
+             <nav class="navbar is-light" style="position:fixed; width:100%; ">
   <div class="navbar-brand">
     <a class="navbar-item" >
       <img src="{{ asset('images/download.png') }}" alt="Apple"  width="150" height="30">
@@ -74,7 +76,12 @@
 
     <style>
       .card-footer {
-        background-color: #4dff3887;
+  background-color:#e1edeb;        
+  position:fixed;       
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
       }
     </style>
   </head>
@@ -84,8 +91,6 @@
       @yield('content')
     </div>
   </section>
-  
-  </body>
   <footer class="card-footer">
     <div class="card-footer-item">
       <p>
@@ -96,5 +101,8 @@
       </p>
     </div>
   </footer>
+  
+  </body>
+  
 </html>
 
