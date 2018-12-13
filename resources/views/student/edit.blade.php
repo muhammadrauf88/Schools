@@ -1,8 +1,12 @@
 @extends('master ')
 @section('content')
+<div class="notification is-black">         
+<h1 class="title is-size-4" style="margin-top:5px;">EDIT DATA</h1> 
+
+</div>
 <div class="container">
-	<div class="notification is primary">
- <h1 class="title is-size-3" style="margin-top:15px;">EDIT DATA</h1>
+	<div class="notification is-primary">
+ 
    @if(count($errors) > 0)
    <div Class="notification is-danger">
       <ul>
@@ -17,7 +21,8 @@
    @endif
 
 
-   <form method="post" action="{{ action('studentcontroller@update', $student->id) }}">
+   <!-- <form method="post" action="{{ action('studentcontroller@update', $id) }}"> -->
+      <form method="post" action="{{ route('student.update', $id) }}">
    	 {{csrf_field()}}
 
 
@@ -31,7 +36,11 @@
          value="{{$student->last_name}}" placeholder="Enter Last Name"
    		 />
    	</div>
+
+    <br>
+    <br>  
    	<div class="form-group">
+         <a href="/student" class="button is-primary">Cancel</a>
    		<input type="submit" class="button is-dark" value="Edit"/>
    		
 </div>   	

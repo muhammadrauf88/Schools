@@ -110,6 +110,8 @@ class studentcontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+      $student = student::find($id);
+      $student->delete();
+      return redirect() ->route('student.index')->with('success','Data Deleted');  
     }
 }

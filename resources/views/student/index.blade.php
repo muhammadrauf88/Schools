@@ -1,59 +1,34 @@
 @extends('master')
 
 @section('content')
-<nav class="navbar is-light">
-  <div class="navbar-brand">
-    <a class="navbar-item" >
-      <img src="{{ asset('images/download.png') }}" width="112" height="28">
-    </a>
-    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
 
-  <div id="navbarExampleTransparentExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" href="/student/create">
-        <h1 class="title is-size-6" style="margin-top:15px;">Home</h1>
-      </a>
-      <div id="navbarExampleTransparentExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" href="/student">
-      <h1 class="title is-size-6" style="margin-top:15px;">Student Data 
-      </h1>
-      </a>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="field is-grouped">
-          <p class="control">
-            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
+ <p class="control has-text-right" ">
+            <a class="button is-light" href="">
               <span class="icon">
-                <i class="fab fa-twitter"></i>
-              </span>
-              <span>
-                Tweet
-              </span>
-            </a>
-          </p>
-          <p class="control">
-            <a class="button is-primary" href="">
-              <span class="icon">
-                <i class="fas fa-download"></i>
+                <i class="fas fa-download" ></i>
               </span>
               <span>Download</span>
             </a>
           </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
+  <div class="notification is-black">         
+<h1 class="title is-size-4" style="margin-top:5px;">STUDENT DATA</h1> 
+
+</div>
+
 <div class="container">
   <div class="notification is-primary">
-    <h1 class="title is-size-3" style="margin-top:15px;">STUDENT DATA</h1>
+    
+      
+     @if(\Session::has('success'))
+    <div class="notification is-success">
+        <p>{{\session::get('success')}}</p>
+    
+ </div>
+
+@endif
+
+
+
     
       <table class="table table-bordered">
     <tr>
@@ -68,16 +43,41 @@
       	<td>{{$row['first_name']}}</td>
       	<td>{{$row['last_name']}}</td>
         <td>{{$row['created_at']}}</td>
-      	<td><a href="{{action('studentcontroller@edit' , $row['id'])}}"
-<a class="button is-warning">Edit </a></a></td>
-      	<td></td>
+      	<td>
+          <!-- Edit student button  -->
+          <a href="{{ action('studentcontroller@edit', $row['id'])}}" class="button is-warning">
+            Edit
+          </a>
+        </td>
+      	<td>
+          <!-- Delete student button  -->
+          <form
+            class="delete-form"
+            method="post"
+            action="{{ action('studentcontroller@destroy', $row['id']) }}">
+            {{ csrf_field() }}
+            <input type="hidden" name="_method" value="DELETE"/>
+            <button type="submit" class="button is-danger">Delete</button>  
+          </form>
+      </td>
 
       </tr>
     @endforeach	
    </table>  
   </div>
 </div>
+  <script>
+    $(document).ready(function(){
+      $('.delete-form').on ('submit', function() {
+          if(confirm("Are you sure you want to delete it? ")) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+    });
 
+</script>
 
 
 
